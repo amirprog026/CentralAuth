@@ -1,0 +1,17 @@
+Options -Indexes
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+
+    # Redirect root URL to 'public/'
+    RewriteRule ^$ public/ [L]
+
+    # Avoid redirecting requests that already point to 'public/'
+    RewriteCond %{REQUEST_URI} !^/public/
+
+    # Skip files and directories that exist, they don't need redirection
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Redirect all other requests to 'public/'
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

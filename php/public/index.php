@@ -14,7 +14,7 @@ define('API_KEY', 'your-static-api-key-here');
 // Function to check if the correct API key is provided
 function checkApiKey() {
     $headers = getallheaders();
-    if (!isset($headers['x-api-key']) || $headers['x-api-key'] !== API_KEY) {
+    if (!isset($headers['X-Api-Key']) || $headers['X-Api-Key'] !== API_KEY) {
         http_response_code(403); // Forbidden
         echo json_encode(['status' => 'error', 'message' => 'Invalid or missing API key']);
         exit();
